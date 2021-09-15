@@ -56,7 +56,7 @@ def allGP(client, message,redis):
         Bot("sendMessage",{"chat_id":chatID,"text":r.userNocc,"reply_to_message_id":message.message_id,"parse_mode":"html"})
 
     if re.search(c.sors,text):
-      kb = InlineKeyboardMarkup([[InlineKeyboardButton(r.MoreInfo, url="t.me/nbbot")]])
+      kb = InlineKeyboardMarkup([[InlineKeyboardButton(r.MoreInfo, url="t.me/calmaacc")]])
       Botuser = client.get_me().username
       Bot("sendMessage",{"chat_id":chatID,"text":r.sors.format("@"+Botuser),"disable_web_page_preview":True,"reply_to_message_id":message.message_id,"parse_mode":"markdown","reply_markup":kb})
     
