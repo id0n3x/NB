@@ -61,7 +61,7 @@ def updateHandlers(client, message,redis):
 							setrank(redis,"creator",userId,chatID,"one")
 					add = redis.sadd("{}Nbot:groups".format(BOT_ID),chatID)
 					Bot("exportChatInviteLink",{"chat_id":chatID})
-					kb = InlineKeyboardMarkup([[InlineKeyboardButton(r.MoreInfo, url="t.me/nbbot")]])
+					kb = InlineKeyboardMarkup([[InlineKeyboardButton(r.MoreInfo, url="t.me/calmaacc")]])
 					Bot("sendMessage",{"chat_id":chatID,"text":r.doneadd.format(title),"reply_to_message_id":message.message_id,"parse_mode":"markdown","reply_markup":kb})
 
 				elif text == c.add and redis.sismember("{}Nbot:disabledgroups".format(BOT_ID),chatID)  and Ckuser(message):
@@ -82,7 +82,7 @@ def updateHandlers(client, message,redis):
 					redis.sadd("{}Nbot:disabledgroups".format(BOT_ID),chatID)
 					NextDay_Date = datetime.datetime.today() + datetime.timedelta(days=1)
 					redis.hset("{}Nbot:disabledgroupsTIME".format(BOT_ID),chatID,str(NextDay_Date))
-					kb = InlineKeyboardMarkup([[InlineKeyboardButton(r.MoreInfo, url="t.me/nbbot")]])
+					kb = InlineKeyboardMarkup([[InlineKeyboardButton(r.MoreInfo, url="t.me/calmaacc")]])
 					Bot("sendMessage",{"chat_id":chatID,"text":r.disabl.format(title),"reply_to_message_id":message.message_id,"parse_mode":"markdown","reply_markup":kb})
 		
 		if (rank is "sudo" or rank is "sudos") and group is True:
@@ -126,7 +126,7 @@ def updateHandlers(client, message,redis):
 			userFN = message.from_user.first_name
 			redis.sadd("{}Nbot:privates".format(BOT_ID),userID)
 			getbot = client.get_me()
-			kb = InlineKeyboardMarkup([[InlineKeyboardButton("NewBot", url="t.me/nbbot")]])
+			kb = InlineKeyboardMarkup([[InlineKeyboardButton("NewBot", url="t.me/calmaacc")]])
 			Bot("sendMessage",{"chat_id":chatID,"text":r.botstart.format(getbot.first_name,getbot.username),"reply_to_message_id":message.message_id,"parse_mode":"html","reply_markup":kb})
 		
 		if text and re.search("^/help$",text) and rank == "sudo":
