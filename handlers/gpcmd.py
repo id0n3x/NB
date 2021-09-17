@@ -421,17 +421,7 @@ def gpcmd(client, message,redis):
 
 🔽꒐ ويمكنك ايضاً اضافه html
 
-<b>bold</b>
-*bold*
 
-<i>italic</i>
-__italic__
-
-<a href=\"https://t.me/mdddd/\">Mohammed</a>
-[Mohammed](https://t.me/mdddd/)
-
-<code>inline fixed-width code</code>
-`inline fixed-width code`
 ⎯ ⎯ ⎯ ⎯""",parse_mode="markdown",disable_web_page_preview=True)
       if re.search(c.setIDC, text):
           tx = text.replace(c.RsetIDC,"")
