@@ -545,7 +545,7 @@ def gpcmd(client, message,redis):
           kb = InlineKeyboardMarkup([[InlineKeyboardButton(r.MoreInfo, url="t.me/calmaacc")]])
           Bot("sendMessage",{"chat_id":chatID,"text":r.Sendreply % tx,"reply_to_message_id":message.message_id,"parse_mode":"html","reply_markup":kb})
 
-      if re.search(c.DLreply, text):
+    if re.search(c.DLreply, text):
         tx = text.replace(c.RPdreply,"")
         if redis.hexists("{}Nbot:{}:TXreplys".format(BOT_ID,chatID),tx):
           redis.hdel("{}Nbot:{}:TXreplys".format(BOT_ID,chatID),tx)
@@ -557,14 +557,16 @@ def gpcmd(client, message,redis):
           redis.hdel("{}Nbot:{}:GFreplys".format(BOT_ID,chatID),tx)
           Bot("sendMessage",{"chat_id":chatID,"text":r.Drp.format(tx),"reply_to_message_id":message.message_id,"parse_mode":"html"})
         elif redis.hexists("{}Nbot:{}:VOreplys".format(BOT_ID,chatID),tx):
-          redis.hdel("{}Nbot:{}:GFreplys".format(BOT_ID,chatID),tx)
+          redis.hdel("{}Nbot:{}:VOreplys".format(BOT_ID,chatID),tx)
+          Bot("sendMessage",{"chat_id":chatID,"text":r.Drp.format(tx),"reply_to_message_id":message.message_id,"parse_mode":"html"})
+        elif redis.hexists("{}Nbot:{}:AUreplys".format(BOT_ID,chatID),tx):
+          redis.hdel("{}Nbot:{}:AUreplys".format(BOT_ID,chatID),tx)
+          Bot("sendMessage",{"chat_id":chatID,"text":r.Drp.format(tx),"reply_to_message_id":message.message_id,"parse_mode":"html"})
+        elif redis.hexists("{}Nbot:{}:PHreplys".format(BOT_ID,chatID),tx):
+          redis.hdel("{}Nbot:{}:PHreplys".format(BOT_ID,chatID),tx)
           Bot("sendMessage",{"chat_id":chatID,"text":r.Drp.format(tx),"reply_to_message_id":message.message_id,"parse_mode":"html"})
         else:
           Bot("sendMessage",{"chat_id":chatID,"text":r.Norp.format(tx),"reply_to_message_id":message.message_id,"parse_mode":"html"})
-    if re.search(c.setname, text):
-      name = text.replace(c.Dsetname,"")
-      Bot("setChatTitle",{"chat_id":chatID,"title":name})
-      Bot("sendMessage",{"chat_id":chatID,"text":r.Dsetname.format(name),"reply_to_message_id":message.message_id,"parse_mode":"html"})
 
     if re.search(c.setabout, text):
       about = text.replace(c.Dsetabout,"")
