@@ -429,6 +429,23 @@ def locks(client, message,redis):
         Bot("sendMessage",{"chat_id":chatID,"text":r.unADD.format(BY,R),"reply_to_message_id":message.message_id,"parse_mode":"html","disable_web_page_preview":True})
 
   if rank != "admin":
+
+    if text == "قفل الدخول" :
+      get = redis.sismember("{}Nbot:Lgpjoin".format(BOT_ID),chatID)
+      if get :
+        send_msg("LUN",client, message,r.locked,"Lgpjoin",T,redis)
+      else:
+        save = redis.sadd("{}Nbot:Lgpjoin".format(BOT_ID),chatID)
+        send_msg("LU",client, message,r.lock,"Lgpjoin",T,redis)
+
+    if text == "فتح الدخول" :
+      get = redis.sismember("{}Nbot:Lgpjoin".format(BOT_ID),chatID)
+      if get :
+        save = redis.srem("{}Nbot:Lgpjoin".format(BOT_ID),chatID)
+        send_msg("LU",client, message,r.unlock,"Lgpjoin",T,redis)
+      else:
+        send_msg("LUN",client, message,r.unlocked,"Lgpjoin",T,redis)
+
     if text == c.Lbancheck :
       R = text.split(" ")[1]
       get = redis.sismember("{}Nbot:bancheck".format(BOT_ID),chatID)
